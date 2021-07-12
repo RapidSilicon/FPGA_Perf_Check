@@ -1,0 +1,24 @@
+# Yosys synthesis script for ac97_top
+# Read verilog files
+read_verilog -nomem2reg ./ac97_top.v
+
+# Technology mapping
+hierarchy -top ac97_top
+proc
+techmap -D NO_LUT -map +/adff2dff.v
+
+# Synthesis
+synth -top ac97_top -flatten
+clean
+
+# LUT mapping
+abc -lut 4
+
+
+# Check
+synth -run check
+stat
+# Clean and output blif
+opt_clean -purge
+stat
+write_blif ac97_top.blif
