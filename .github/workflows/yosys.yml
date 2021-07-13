@@ -1,0 +1,52 @@
+
+name: Synth_stats
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ main ]
+    paths:
+          'designs/**'
+  pull_request:
+    branches: [ main ]
+    
+  workflow_dispatch:
+
+jobs:
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+        with:
+            submodule: recursive
+
+      - name: Update Submodules
+        run: |
+             git submodule init
+             git submodule update
+             
+      - name: Build Yosys
+        run: |
+             make -f ./yosys/Makefile config-gcc
+             sed -i 's/CONFIG := clang/CONFIG := gcc/g' ./yosys/Makefile
+             make -f Makefile install -j10 PREFIX=~/symbi_yosys
+             
+      - name: Build Yosys-Plugins
+        run: |
+            cd yosys-symbiflow-plugins
+            git checkout master
+            export PATH=~/symbi_yosys/bin:$PATH
+            make
+            make plugins
+            make install
+            cd ..
+            
+      - name: Synthesize all Benchmaarks on yosys
+        run:
+           make run_fpga_flow
+        
+             
