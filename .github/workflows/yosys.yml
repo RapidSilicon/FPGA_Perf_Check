@@ -54,6 +54,7 @@ jobs:
            
       - name: Generate and Display report
         run: |
+             sudo apt-get install -y python-pandas
              make csv_report
              sudo apt intall csvtool -y
              csvtool -u comma readable /Reports/designs_info.csv
