@@ -7,6 +7,9 @@ import os
 
 working_directory= os.path.normpath(os.getcwd())
 
+if not os.path.exists("Reports"):
+    os.makedirs("Reports")
+
 def read_log_file (path_of_log_files):
     match_list=["lut       ","  dff       ","_DFF_N_    ","_DFF_P_    ","=== ","real	"]
     desin_name=list()

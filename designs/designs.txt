@@ -1,2 +1,3 @@
 ac97_top.v, ac97_top
-eth_top.v, eth_top
+eth_top.v,  eth_top
+aes_256.v,  aes_256
