@@ -52,7 +52,7 @@ jobs:
         run:
            make run_fpga_flow
            
-       -name: Generate and Display report
+      - name: Generate and Display report
         run: |
              make csv_report
              sudo apt intall csvtool -y
