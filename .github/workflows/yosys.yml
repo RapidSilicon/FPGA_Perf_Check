@@ -22,11 +22,6 @@ jobs:
         run: |
              git submodule init
              git submodule update
-             
-      - name: Build Yosys
-        run: |
-             sudo apt install tclsh
-             set -x
              cd yosys
              make config-gcc
              sed -i 's/CONFIG := clang/CONFIG := gcc/g' Makefile
