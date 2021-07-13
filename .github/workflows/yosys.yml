@@ -25,6 +25,8 @@ jobs:
              
       - name: Build Yosys
         run: |
+             apt install tclsh
+             set -x
              cd yosys
              make config-gcc
              sed -i 's/CONFIG := clang/CONFIG := gcc/g' Makefile
