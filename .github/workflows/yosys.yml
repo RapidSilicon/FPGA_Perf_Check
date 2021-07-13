@@ -25,7 +25,7 @@ jobs:
              
       - name: Build Yosys
         run: |
-             apt install tclsh
+             sudo apt install tclsh
              set -x
              cd yosys
              make config-gcc
