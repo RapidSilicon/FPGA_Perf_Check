@@ -25,9 +25,11 @@ jobs:
              
       - name: Build Yosys
         run: |
-             make -f ./yosys/Makefile config-gcc
-             sed -i 's/CONFIG := clang/CONFIG := gcc/g' ./yosys/Makefile
-             make -f Makefile install -j10 PREFIX=~/symbi_yosys
+             cd yosys
+             make config-gcc
+             sed -i 's/CONFIG := clang/CONFIG := gcc/g' Makefile
+             make install -j10 PREFIX=~/symbi_yosys
+             cd ..
              
       - name: Build Yosys-Plugins
         run: |
