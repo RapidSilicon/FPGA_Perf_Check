@@ -1,16 +1,15 @@
-
 name: Synth_stats
 
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
-  push:
-    branches: [ main ]
-    paths:
-          'designs/**'
+  push: 
+       branches: [main]
+       paths:
+            'designs/**'
   pull_request:
-    branches: [ main ]
-    
+       branches: [main] 
+       
   workflow_dispatch:
 
 jobs:
@@ -22,7 +21,7 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
         with:
-            submodule: recursive
+            submodules: recursive
 
       - name: Update Submodules
         run: |
@@ -31,9 +30,13 @@ jobs:
              
       - name: Build Yosys
         run: |
-             make -f ./yosys/Makefile config-gcc
-             sed -i 's/CONFIG := clang/CONFIG := gcc/g' ./yosys/Makefile
-             make -f Makefile install -j10 PREFIX=~/symbi_yosys
+             sudo apt install tcl-dev -y
+             set -x
+             cd yosys
+             make config-gcc
+             sed -i 's/CONFIG := clang/CONFIG := gcc/g' Makefile
+             make install -j10 PREFIX=~/symbi_yosys
+             cd ..
              
       - name: Build Yosys-Plugins
         run: |
@@ -48,5 +51,9 @@ jobs:
       - name: Synthesize all Benchmaarks on yosys
         run:
            make run_fpga_flow
-        
-             
+           
+      - name: Generate and Display report
+        run: |
+             make csv_report
+             sudo apt intall csvtool -y
+             csvtool -u comma readable /Reports/designs_info.csv
