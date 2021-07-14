@@ -50,7 +50,7 @@ jobs:
             
       - name: Synthesize all Benchmaarks on yosys
         run:
-           make run_fpga_flow
+            which yosys
            
       - name: Generate and Display report
         run: |
