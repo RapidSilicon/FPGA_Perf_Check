@@ -56,5 +56,5 @@ jobs:
         run: |
              pip3 install pandas
              make csv_report
-             sudo apt intall csvtool -y
+             sudo apt install csvtool -y
              csvtool -u comma readable /Reports/designs_info.csv
