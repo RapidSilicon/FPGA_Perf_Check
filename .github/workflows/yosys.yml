@@ -36,6 +36,7 @@ jobs:
              echo '=========================='
              echo 'Building yosys'
              echo '=========================='
+             mkdir -p ~/.local-bin
              cd yosys
              make config-gcc # Build Yosys using GCC
              PREFIX=$HOME/.local-bin make -j$(nproc)
