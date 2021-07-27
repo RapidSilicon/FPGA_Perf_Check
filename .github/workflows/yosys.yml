@@ -30,6 +30,7 @@ jobs:
       - name: Build Yosys
         run: |
              sudo apt install tcl-dev -y
+             export PATH="$HOME/.local-bin/bin:$PATH"
              set -x
              if [ ! -e ~/.local-bin/bin/yosys ]; then
              echo '=========================='
