@@ -59,7 +59,15 @@ jobs:
             
       - name: Synthesize all Benchmaarks on yosys
         run:
+            echo $(which yosys)
             make run_fpga_flow
+            
+      - name: Synthesize all Benchmaarks on yosys
+        run: |
+             export PATH="$HOME/.local-bin/bin:$PATH"
+             make run_fpga_flow
+             
+      
            
       - name: Generate and Display report
         run: |
