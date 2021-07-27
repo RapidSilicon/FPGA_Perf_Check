@@ -52,7 +52,6 @@ jobs:
         run: |
             cd yosys-symbiflow-plugins
             git checkout master
-            export PATH=$HOME/.local-bin:$PATH
             make
             make plugins
             make install
