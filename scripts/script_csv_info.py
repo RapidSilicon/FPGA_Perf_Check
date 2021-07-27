@@ -60,8 +60,8 @@ print ("--- CSV Report Generated Successfully!  ---\n")
 print ("---      Reports/designs_info.csv       ---\n")
 print ("-------------------------------------------\n")
 
-for file in os.listdir(working_directory+"/logs"):
+for file in os.listdir(working_directory+"/Reports"):
     # Check whether file is in log format or not
     if file.endswith(".log"):
         path_of_log_files =file
-        read_log_file(working_directory+"/logs/"+path_of_log_files)
+        read_log_file(working_directory+"/Reports/"+path_of_log_files)
