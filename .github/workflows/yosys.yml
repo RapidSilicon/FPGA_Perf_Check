@@ -52,7 +52,6 @@ jobs:
         run: |
             cd yosys-symbiflow-plugins
             git checkout master
-            make
             make plugins
             make install
             cd ..
