@@ -36,11 +36,7 @@ jobs:
              echo '=========================='
              echo 'Building yosys'
              echo '=========================='
-             set -x
-             mkdir -p ~/.local-src
              mkdir -p ~/.local-bin
-             cd ~/.local-src
-             git clone https://github.com/SymbiFlow/yosys.git -b master+wip
              cd yosys
              make config-gcc # Build Yosys using GCC
              PREFIX=$HOME/.local-bin make -j$(nproc)
@@ -48,12 +44,13 @@ jobs:
              echo $(which yosys)
              echo $(which yosys-config)
              echo $(yosys-config --datdir)
+             cd ..
              fi
              
              
       - name: Build Yosys-Plugins
         run: |
-            cd ../yosys-symbiflow-plugins
+            cd yosys-symbiflow-plugins
             git checkout master
             export PATH=$HOME/.local-bin:$PATH
             make
