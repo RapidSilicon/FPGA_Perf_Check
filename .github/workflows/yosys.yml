@@ -27,9 +27,15 @@ jobs:
         run: |
              git submodule update --init --recursive
              
+      - name : Build dependencies
+        run: |
+             pip3 install pandas
+             sudo apt install csvtool -y
+             sudo apt install tcl-dev -y
+    
+             
       - name: Build Yosys
         run: |
-             sudo apt install tcl-dev -y
              export PATH="$HOME/.local-bin/bin:$PATH"
              set -x
              if [ ! -e ~/.local-bin/bin/yosys ]; then
@@ -58,20 +64,20 @@ jobs:
             cd ..
             
       - name: Synthesize all Benchmaarks on yosys
-        run:
-            echo $(which yosys)
-            make run_fpga_flow
+        run: |
+             echo $(which yosys)
+             make run_fpga_flow
             
       - name: Synthesize all Benchmaarks on yosys
         run: |
              export PATH="$HOME/.local-bin/bin:$PATH"
              make run_fpga_flow
              
-      
+      - name: Display contents
+        run: |
+             find -iname *.log
            
       - name: Generate and Display report
         run: |
-             pip3 install pandas
              make csv_report
-             sudo apt install csvtool -y
              csvtool -u comma readable ./Reports/designs_info.csv
