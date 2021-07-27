@@ -59,8 +59,7 @@ jobs:
             
       - name: Synthesize all Benchmaarks on yosys
         run:
-            sudo apt install tree -y
-            tree
+            make run_fpga_flow
            
       - name: Generate and Display report
         run: |
