@@ -29,7 +29,7 @@ for design in designs_dict:
     design_fname=design
        
     #yosys sim
-    yosys_sim_cmd = ('yosys -p "plugin -i ql-qlf; synth_quicklogic -blif ./designs/'+design_top+'/'+design_top+'.blif -family qlf_k4n8 -top '+design_top+'" ./designs/'+design_top+'/'+design_fname+' -l ./Reports/'+design_top+'.log')
+    yosys_sim_cmd = ('yosys -p "plugin -i ql-qlf; synth_quicklogic -blif ./designs/'+design_top+'/'+design_top+'.blif -family qlf_k4n8 -top '+design_top+'" ./designs/'+design_top+'/'+design_fname+' -l ./logs/'+design_top+'.log')
     subprocess.call(yosys_sim_cmd,shell=True,executable='/bin/bash')
 
 
