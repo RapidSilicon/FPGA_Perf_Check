@@ -11,7 +11,7 @@ if not os.path.exists("Reports"):
     os.makedirs("Reports")
 
 def read_log_file (path_of_log_files):
-    match_list=["lut       ","  dff       ","_DFF_N_    ","_DFF_P_    ","=== ","real	"]
+    match_list=["lut       ","  dff       ","_DFF_N_    ","_DFF_P_    ","=== ","real="]
     desin_name=list()
     desin_name.append('None')
     lut_list =list()
@@ -41,7 +41,7 @@ def read_log_file (path_of_log_files):
                     elif required==match_list[4]:
                         desin_name.append(splited_line[1])
                     elif required==match_list[5]:
-                        run_time.append(splited_line[1])
+                        run_time.append(splited_line[2])
     with open(working_directory+"/Reports/designs_info.csv", "a+") as csvfile:
          writer = csv.writer(csvfile) 
          writer.writerow([desin_name[len(desin_name)-1], dff_list[len(dff_list)-1], lut_list[len(lut_list)-1], dff_n_list[len(dff_n_list)-1], dff_p_list[len(dff_p_list)-1], run_time[len(run_time)-1]] )
