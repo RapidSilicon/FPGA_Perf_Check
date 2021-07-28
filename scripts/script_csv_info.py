@@ -52,7 +52,7 @@ def read_log_file (path_of_log_files):
          dff_p_list*=0 
          run_time*=0
 
-with open(working_directory+"/Reports/designs_info.csv", "w") as csvfile: 
+with open(working_directory+"/logs/designs_info.csv", "w") as csvfile: 
     writer = csv.writer(csvfile)
     writer.writerow(['Design','DFF','LUT','DFF_N','DFF_P','Tool Runtime'])
 print ("-------------------------------------------\n")
@@ -60,8 +60,8 @@ print ("--- CSV Report Generated Successfully!  ---\n")
 print ("---      Reports/designs_info.csv       ---\n")
 print ("-------------------------------------------\n")
 
-for file in os.listdir(working_directory+"/Reports"):
+for file in os.listdir(working_directory+"/logs"):
     # Check whether file is in log format or not
     if file.endswith(".log"):
         path_of_log_files =file
-        read_log_file(working_directory+"/Reports/"+path_of_log_files)
+        read_log_file(working_directory+"/logs/"+path_of_log_files)
