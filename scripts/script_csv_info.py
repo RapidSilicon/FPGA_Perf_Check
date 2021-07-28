@@ -52,7 +52,7 @@ def read_log_file (path_of_log_files):
          dff_p_list*=0 
          run_time*=0
 
-with open(working_directory+"/logs/designs_info.csv", "w") as csvfile: 
+with open(working_directory+"/Reports/designs_info.csv", "w") as csvfile: 
     writer = csv.writer(csvfile)
     writer.writerow(['Design','DFF','LUT','DFF_N','DFF_P','Tool Runtime'])
 print ("-------------------------------------------\n")
