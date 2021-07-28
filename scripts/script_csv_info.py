@@ -11,7 +11,7 @@ if not os.path.exists("Reports"):
     os.makedirs("Reports")
 
 def read_log_file (path_of_log_files):
-    match_list=["lut       ","  dff       ","_DFF_N_    ","_DFF_P_    ","=== ","real="]
+    match_list=["lut       ","  dff       ","_DFF_N_    ","_DFF_P_    ","=== ","real ="]
     desin_name=list()
     desin_name.append('None')
     lut_list =list()
