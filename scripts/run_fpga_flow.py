@@ -4,6 +4,7 @@ import subprocess
 import shutil
 import fileinput
 import re
+import time
 
 designs_dict = {}
 
@@ -30,6 +31,12 @@ for design in designs_dict:
        
     #yosys sim
     yosys_sim_cmd = ('yosys -p "plugin -i ql-qlf; synth_quicklogic -blif ./designs/'+design_top+'/'+design_top+'.blif -family qlf_k4n8 -top '+design_top+'" ./designs/'+design_top+'/'+design_fname+' -l ./logs/'+design_top+'.log')
+    start=time.time()
     subprocess.call(yosys_sim_cmd,shell=True,executable='/bin/bash')
+    elapsed=(start - time.time())
+    time_info = open('./logs/'+design_top+'.log', "a")
+    time_info.write("real = "+str(round(elapsed,3))+"s")
+    time_info.close
+    
 
 
