@@ -36,10 +36,10 @@ for design in designs_dict:
     elapsed=(time.time() - start)
     print("ELAPSED TIME = ",elapsed)
     if (elapsed >= 60):
-        elapsed_min = elapsed/60
+        elapsed_min = int(elapsed/60)
         elapsed_sec = elapsed%60
         time_f=open('./logs/'+design_top+'.log', 'a')
-        time_f.write("real = "+str(round(elapsed_min,0))+"min"+str(round(elapsed_sec,3))+"s")
+        time_f.write("real = "+str(elapsed_min)+"min"+str(round(elapsed_sec,3))+"s")
         time_f.close() 
     else: 
         time_f=open('./logs/'+design_top+'.log', 'a')
