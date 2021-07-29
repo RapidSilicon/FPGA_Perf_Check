@@ -34,9 +34,17 @@ for design in designs_dict:
     start=time.time()
     subprocess.call(yosys_sim_cmd,shell=True,executable='/bin/bash')
     elapsed=(time.time() - start)
-    time_info = open('./logs/'+design_top+'.log', "a")
-    time_info.write("real = "+str(round(elapsed,3))+"s")
-    time_info.close
+    print("ELAPSED TIME = ",elapsed)
+    if (elapsed >= 60):
+        elapsed_min = elapsed/60
+        elapsed_sec = elapsed%60
+        time_f=open('./logs/'+design_top+'.log', 'a')
+        time_f.write("real = "+str(round(elapsed_min,3))+"min"+str(round(elapsed_sec,3))+"sec")
+        time_f.close() 
+    else: 
+        time_f=open('./logs/'+design_top+'.log', 'a')
+        time_f.write("real = 0min"+str(round(elapsed,3))+ "sec")
+        time_f.close()
     
 
 
